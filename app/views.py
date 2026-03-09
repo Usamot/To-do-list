@@ -16,7 +16,8 @@ def LandingPage(request):
     }
 
 
-    return render(request, 'LandingPage.html' , context)
+    
+    return render(request, "app/LandingPage.html", context)
 
 def AddTask(request):
 
