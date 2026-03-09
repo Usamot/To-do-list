@@ -60,7 +60,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'todo_app.urls'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 
 TEMPLATES = [
     {
@@ -134,3 +134,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Static files (CSS, JavaScript, Images)
+
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
