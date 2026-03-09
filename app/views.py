@@ -8,6 +8,16 @@ from app.models import Todoapp
 
 
 # Create your views here.
+
+from django.shortcuts import render
+
+def LandingPage(request):
+    todo = Todoapp.objects.all()
+    context = {
+        "alltodo" : todo
+    }
+    return render(request, "app/LandingPage.html", context)
+
 def LandingPage(request):
 
     todo = Todoapp.objects.all()
@@ -37,7 +47,7 @@ def AddTask(request):
 
 
     
-    return render(request, 'addTask.html', context)
+    return render(request, 'app/addTask.html', context)
 
 def EditTask(request, pk):
     todo =Todoapp.objects.get(id=pk)
@@ -67,7 +77,7 @@ def EditTask(request, pk):
 
 
 
-    return render(request, 'editTask.html',context)
+    return render(request, 'app/editTask.html',context)
 
 
 
@@ -90,7 +100,7 @@ def PendTask(request):
     
 
 
-    return render(request, 'pendingPage.html',context)
+    return render(request, 'app/pendingPage.html',context)
 #   return HttpResponse(template.render(context, request))
 
 
@@ -103,7 +113,7 @@ def CompleteTask(request):
         'completedTodo' : allcomplete
     }
 
-    return render(request, 'completePage.html', context)
+    return render(request, 'app/completePage.html', context)
 
 '''
 person
