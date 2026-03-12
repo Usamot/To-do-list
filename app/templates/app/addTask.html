@@ -1,25 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Document</title>
-    <style>
-        *{
-            margin: auto;
-            text-decoration: none;
-        }
-    </style>
+<title>Add Task</title>
+
+<style>
+
+/* ---------- RESET ---------- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    text-decoration:none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- PAGE ---------- */
+body{
+    background:#f5f7fa;
+    padding:20px;
+}
+
+/* ---------- CONTAINER ---------- */
+.container{
+    width:40%;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ---------- TITLE ---------- */
+.container h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* ---------- FORM ---------- */
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* Django form inputs */
+form input,
+form textarea,
+form select{
+    padding:12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    width:100%;
+}
+
+/* ---------- BUTTON ---------- */
+form input[type="submit"]{
+    background:#1a9709;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
+    transition:0.3s;
+}
+
+form input[type="submit"]:hover{
+    background:#147807;
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width:1024px){
+
+.container{
+    width:60%;
+}
+
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:768px){
+
+.container{
+    width:90%;
+    padding:20px;
+}
+
+.container h1{
+    font-size:24px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-    {% include './topbar.html'%}
-    <h1>ADD PAGE</h1>
-    <form action="" method="post">
-        {{myform }}
-        {% csrf_token %}
-        <input type="submit" value="submit form">
-    </form>
+
+{% include './topbar.html'%}
+
+<div class="container">
+
+<h1>ADD TASK</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ myform }}
+    <input type="submit" value="Submit Form">
+</form>
+
+</div>
+
 </body>
 </html>
