@@ -1,120 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Tasks</title>
 
-    <style>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
 
-        *{
-            margin: auto;
-            padding: auto;
-            list-style-type: none;
-            text-decoration: none;
-        }
-       
+.heading_title {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    text-align: center;
+}
 
-        .heading_title{
-            width: 40%;
-            
-            display: flex;
-            gap:2px;
-            text-align: center;
-            
+.heading_title h3 {
+    background-color: rgb(153, 167, 179);
+    padding: 10px 20px;
+    color: black;
+    flex: 1;
+}
 
-        }
-        .heading_title h3{
-            background-color: rgb(153, 167, 179);
-            padding: 10px 65px 10px 65px;
-            margin-top: 10px;
-            color: black;
-        }
-        .heading_title a :hover{
-            background-color: rgb(26, 151, 9);
-            color: rgb(255, 248, 248);
-            cursor: pointer;
-        }
-        .nav1{
-            display: flex;
-            margin-top: 40px;
-        }
-        .nav2{
-            display: flex;
-            gap: 5px;
-            background-color: rgb(26, 151, 9);
-            padding: 10px;
-            
-            
-            
-        }
-        .table_row{
-            
-            gap: 250px;
-            display: flex;
-            margin-top: 10px;
-            background-color: rgb(200, 207, 212);
-            padding: 15px;
-            
-        }
-    </style>
+.heading_title a:hover h3 {
+    background-color: rgb(26, 151, 9);
+    color: rgb(255, 248, 248);
+    cursor: pointer;
+}
 
+.nav1 {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+.nav2 {
+    display: flex;
+    gap: 10px;
+    background-color: rgb(26, 151, 9);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.table_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 15px;
+    background-color: rgb(200, 207, 212);
+    border-radius: 5px;
+    align-items: center;
+}
+
+.table_row div {
+    flex: 1 1 30%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.table_row div.actions {
+    justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+    .table_row div {
+        flex: 1 1 100%;
+    }
+    .nav1 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
 </head>
 <body>
 
-    {% include './topbar.html'%}
-    <div>
-        
-        <div class="heading_title">
-           <a href=""><h3>All</h3></a> 
-          <a href="{% url 'pendTaskurl' %}"><h3>Pending</h3></a> 
-            <a href="{% url 'completeTaskurl' %}">
-                <h3>Completed</h3>
-            </a>
-        </div>
-        <nav class="nav1">
-            <h3>Tasks</h3>
-            <nav class="nav2">
-                <h3><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-plus" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
-                    <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
-                  </svg></h3>
-                 <a href="{% url 'addTaskurl' %}"><h3>Add Tasks</h3></a> 
+{% include './topbar.html'%}
 
-            </nav>
-        </nav>
+<!-- Heading Tabs -->
+<div class="heading_title">
+    <a href=""><h3>All</h3></a>
+    <a href="{% url 'pendTaskurl' %}"><h3>Pending</h3></a>
+    <a href="{% url 'completeTaskurl' %}"><h3>Completed</h3></a>
+</div>
 
-        {% for eachtodo in alltodo %}
-        <table class="table">
-            <tr class="table_row">
-                <th>{{ eachtodo.title }}</th>
-                <td>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                      </svg>
-                    <span>{{ eachtodo.statue }}</span>
-                </td>
-                <td>
-                    <a href="{% url 'editTaskurl' eachtodo.id %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16"> 
-                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
-                          </svg>
-                    </a>
-
-                      <a href="{% url 'deleteTaskurl' eachtodo.id %}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
-                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z"/>
-                          </svg>
-                    </td>
-                      </a>
-            </tr>
-
-
-
-            
-        </table>
-        {%  endfor %}
+<!-- Navigation -->
+<div class="nav1">
+    <h3>Tasks</h3>
+    <div class="nav2">
+        <a href="{% url 'addTaskurl' %}"><h3>Add Tasks</h3></a>
     </div>
+</div>
+
+<!-- Task Rows -->
+<div>
+{% for eachtodo in alltodo %}
+<div class="table_row">
+    <div>{{ eachtodo.title }}</div>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+        </svg>
+        <span>{{ eachtodo.statue }}</span>
+    </div>
+    <div class="actions">
+        <a href="{% url 'editTaskurl' eachtodo.id %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16"> 
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+            </svg>
+        </a>
+        <a href="{% url 'deleteTaskurl' eachtodo.id %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+{% endfor %}
+</div>
+
 </body>
 </html>
